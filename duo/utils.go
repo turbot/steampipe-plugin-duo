@@ -6,12 +6,10 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"time"
 
 	duoapi "github.com/duosecurity/duo_api_golang"
 
 	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/transform"
 )
 
 const defaultLimit uint64 = 1000
@@ -59,15 +57,6 @@ func connect(_ context.Context, d *plugin.QueryData) (*duoapi.DuoApi, error) {
 	d.ConnectionManager.Cache.Set(cacheKey, conn)
 
 	return conn, nil
-}
-
-func unixTimestampToDateTime(_ context.Context, d *transform.TransformData) (interface{}, error) {
-	i := int64(d.Value.(int))
-	if i == 0 {
-		return nil, nil
-	}
-	ts := time.Unix(i, 0)
-	return ts, nil
 }
 
 func resultToError(result duoapi.StatResult, err error) error {
