@@ -29,18 +29,15 @@ func connect(_ context.Context, d *plugin.QueryData) (*duoapi.DuoApi, error) {
 
 	// But prefer the config
 	duoConfig := GetConfig(d.Connection)
-	if &duoConfig != nil {
-		if duoConfig.APIHostname != nil {
-			apiHostname = *duoConfig.APIHostname
-		}
-		if duoConfig.IntegrationKey != nil {
-			integrationKey = *duoConfig.IntegrationKey
-		}
-		if duoConfig.SecretKey != nil {
-			secretKey = *duoConfig.SecretKey
-		}
+	if duoConfig.APIHostname != nil {
+		apiHostname = *duoConfig.APIHostname
 	}
-
+	if duoConfig.IntegrationKey != nil {
+		integrationKey = *duoConfig.IntegrationKey
+	}
+	if duoConfig.SecretKey != nil {
+		secretKey = *duoConfig.SecretKey
+	}
 	if apiHostname == "" || integrationKey == "" || secretKey == "" {
 		// Credentials not set
 		return nil, errors.New("api_hostname, integration_key and secret_key must be configured")
