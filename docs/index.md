@@ -14,9 +14,10 @@ og_image: "/images/plugins/turbot/duo-social-graphic.png"
 
 [Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
 
-[Duo Security](https://duo.com) providers cloud-based two-factor authentication services.
+[Duo Security](https://duo.com) provides cloud-based two-factor authentication services.
 
 Example query:
+
 ```sql
 select
   username,
@@ -25,7 +26,7 @@ select
 from
   duo_user
 order by
-  username
+  username;
 ```
 
 ```
@@ -66,14 +67,14 @@ connection "duo" {
 }
 ```
 
-* `api_hostname` - Unique API endpoint for your account, [learn more](https://duo.com/docs/adminapi#first-steps).
-* `integration_key` - Integration key for your account, [learn more](https://duo.com/docs/adminapi#first-steps).
-* `secret_key` - Secret key, [learn more](https://duo.com/docs/adminapi#first-steps).
+- `api_hostname` - Unique API endpoint for your account, [learn more](https://duo.com/docs/adminapi#first-steps).
+- `integration_key` - Integration key for your account, [learn more](https://duo.com/docs/adminapi#first-steps).
+- `secret_key` - Secret key, [learn more](https://duo.com/docs/adminapi#first-steps).
 
 Environment variables are also available as an alternate configuration method:
-* `DUO_API_HOSTNAME`
-* `DUO_INTEGRATION_KEY`
-* `DUO_SECRET_KEY`
+- `DUO_API_HOSTNAME`
+- `DUO_INTEGRATION_KEY`
+- `DUO_SECRET_KEY`
 
 ## Get involved
 
