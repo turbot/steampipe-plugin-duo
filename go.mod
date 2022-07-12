@@ -6,7 +6,7 @@ replace github.com/duosecurity/duo_api_golang => github.com/e-gineer/duo_api_gol
 
 require (
 	github.com/duosecurity/duo_api_golang v0.0.0-20220428205559-fa137a8ef05b
-	github.com/turbot/steampipe-plugin-sdk/v3 v3.3.1
+	github.com/turbot/steampipe-plugin-sdk/v3 v3.3.2
 )
 
 require (
