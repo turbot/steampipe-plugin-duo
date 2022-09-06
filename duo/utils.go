@@ -9,7 +9,7 @@ import (
 
 	duoapi "github.com/duosecurity/duo_api_golang"
 
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
 )
 
 const defaultLimit uint64 = 1000
