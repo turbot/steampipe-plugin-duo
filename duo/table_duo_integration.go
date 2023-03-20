@@ -5,8 +5,8 @@ import (
 
 	"github.com/duosecurity/duo_api_golang/admin"
 
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 )
 
 func tableDuoIntegration(ctx context.Context) *plugin.Table {
@@ -79,7 +79,7 @@ func listIntegration(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrate
 }
 
 func getIntegration(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	integrationKey := d.KeyColumnQuals["integration_key"].GetStringValue()
+	integrationKey := d.EqualsQuals["integration_key"].GetStringValue()
 	conn, err := connect(ctx, d)
 	if err != nil {
 		plugin.Logger(ctx).Error("duo_integration.getIntegration", "connection_error", err)

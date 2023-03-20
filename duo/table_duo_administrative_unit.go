@@ -5,8 +5,8 @@ import (
 
 	"github.com/duosecurity/duo_api_golang/admin"
 
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 )
 
 func tableDuoAdministrativeUnit(ctx context.Context) *plugin.Table {
@@ -71,7 +71,7 @@ func getAdministrativeUnit(ctx context.Context, d *plugin.QueryData, h *plugin.H
 		adminID = h.Item.(admin.AdministrativeUnit).AdminUnitID
 	} else {
 		// Get admin ID from the qualifier on a get
-		adminID = d.KeyColumnQuals["admin_unit_id"].GetStringValue()
+		adminID = d.EqualsQuals["admin_unit_id"].GetStringValue()
 	}
 
 	conn, err := connect(ctx, d)
