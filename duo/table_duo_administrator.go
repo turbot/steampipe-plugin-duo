@@ -5,9 +5,9 @@ import (
 
 	"github.com/duosecurity/duo_api_golang/admin"
 
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableDuoAdministrator(ctx context.Context) *plugin.Table {
@@ -72,7 +72,7 @@ func listAdministrator(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 }
 
 func getAdministrator(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	adminID := d.KeyColumnQuals["admin_id"].GetStringValue()
+	adminID := d.EqualsQuals["admin_id"].GetStringValue()
 	conn, err := connect(ctx, d)
 	if err != nil {
 		plugin.Logger(ctx).Error("duo_administrator.getAdministrator", "connection_error", err, "admin_id", adminID)

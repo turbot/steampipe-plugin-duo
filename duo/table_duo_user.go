@@ -6,9 +6,9 @@ import (
 
 	"github.com/duosecurity/duo_api_golang/admin"
 
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableDuoUser(ctx context.Context) *plugin.Table {
@@ -59,7 +59,7 @@ func listUser(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (
 
 	// URL parameters for all queries
 	baseParams := []func(*url.Values){admin.Limit(defaultLimit)}
-	keyQuals := d.KeyColumnQuals
+	keyQuals := d.EqualsQuals
 	if keyQuals["username"] != nil {
 		baseParams = append(baseParams, admin.GetUsersUsername(keyQuals["username"].GetStringValue()))
 	}
@@ -90,7 +90,7 @@ func listUser(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (
 }
 
 func getUser(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	userID := d.KeyColumnQuals["user_id"].GetStringValue()
+	userID := d.EqualsQuals["user_id"].GetStringValue()
 	conn, err := connect(ctx, d)
 	if err != nil {
 		plugin.Logger(ctx).Error("duo_user.getUser", "connection_error", err, "user_id", userID)

@@ -5,9 +5,9 @@ import (
 
 	"github.com/duosecurity/duo_api_golang/admin"
 
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableDuoGroup(ctx context.Context) *plugin.Table {
@@ -63,7 +63,7 @@ func listGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 }
 
 func getGroup(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	groupID := d.KeyColumnQuals["group_id"].GetStringValue()
+	groupID := d.EqualsQuals["group_id"].GetStringValue()
 	conn, err := connect(ctx, d)
 	if err != nil {
 		plugin.Logger(ctx).Error("duo_group.getGroup", "connection_error", err)

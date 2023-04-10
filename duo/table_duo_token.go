@@ -5,8 +5,8 @@ import (
 
 	"github.com/duosecurity/duo_api_golang/admin"
 
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 )
 
 func tableDuoToken(ctx context.Context) *plugin.Table {
@@ -63,7 +63,7 @@ func listToken(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) 
 }
 
 func getToken(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	tokenID := d.KeyColumnQuals["token_id"].GetStringValue()
+	tokenID := d.EqualsQuals["token_id"].GetStringValue()
 	conn, err := connect(ctx, d)
 	if err != nil {
 		plugin.Logger(ctx).Error("duo_token.getToken", "connection_error", err)
