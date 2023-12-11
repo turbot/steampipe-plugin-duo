@@ -8,6 +8,7 @@ name: duo
 description: Steampipe plugin for querying Duo Security users, logs and more.
 og_description: Query Duo Security with SQL! Open source CLI. No DB required.
 og_image: "/images/plugins/turbot/duo-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 
 # Duo Security + Steampipe
