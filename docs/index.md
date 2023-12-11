@@ -77,7 +77,4 @@ Environment variables are also available as an alternate configuration method:
 - `DUO_INTEGRATION_KEY`
 - `DUO_SECRET_KEY`
 
-## Get involved
 
-* Open source: https://github.com/turbot/steampipe-plugin-duo
-* Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
