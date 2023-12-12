@@ -8,11 +8,12 @@ name: duo
 description: Steampipe plugin for querying Duo Security users, logs and more.
 og_description: Query Duo Security with SQL! Open source CLI. No DB required.
 og_image: "/images/plugins/turbot/duo-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 
 # Duo Security + Steampipe
 
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+[Steampipe](https://steampipe.io) is an open-source zero-ETL engine to instantly query cloud APIs using SQL.
 
 [Duo Security](https://duo.com) provides cloud-based two-factor authentication services.
 
@@ -76,7 +77,4 @@ Environment variables are also available as an alternate configuration method:
 - `DUO_INTEGRATION_KEY`
 - `DUO_SECRET_KEY`
 
-## Get involved
 
-* Open source: https://github.com/turbot/steampipe-plugin-duo
-* Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
