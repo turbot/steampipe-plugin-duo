@@ -9,16 +9,16 @@ import (
 
 	duoapi "github.com/duosecurity/duo_api_golang"
 
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
 )
 
 const defaultLimit uint64 = 1000
 
-func connect(_ context.Context, d *plugin.QueryData) (*duoapi.DuoApi, error) {
+func connect(ctx context.Context, d *plugin.QueryData) (*duoapi.DuoApi, error) {
 
 	// Load connection from cache, which preserves throttling protection etc
 	cacheKey := "duo"
-	if cachedData, ok := d.ConnectionManager.Cache.Get(cacheKey); ok {
+	if cachedData, ok := d.ConnectionCache.Get(ctx, cacheKey); ok {
 		return cachedData.(*duoapi.DuoApi), nil
 	}
 
@@ -51,7 +51,7 @@ func connect(_ context.Context, d *plugin.QueryData) (*duoapi.DuoApi, error) {
 	)
 
 	// Save to cache
-	d.ConnectionManager.Cache.Set(cacheKey, conn)
+	_ = d.ConnectionCache.Set(ctx, cacheKey, conn)
 
 	return conn, nil
 }
@@ -76,6 +76,6 @@ func resultToError(result duoapi.StatResult, err error) error {
 	return errors.New(s)
 }
 
-func isNotFoundError(err error) bool {
+func isNotFoundError(_ context.Context, _ *plugin.QueryData, _ *plugin.HydrateData, err error) bool {
 	return strings.Contains(err.Error(), "Resource not found")
 }
